@@ -10,6 +10,21 @@ let url = baseURL + '.json?' + key + '&list=paperback-nonfiction';
 http.open('GET', url);
 http.send();
 
-setTimeout(function() {
-  console.log(JSON.parse(http.responseText));
-}, 3000);
+http.onreadystatechange = function() {
+
+  if (this.readyState == 4 && this.status == 200) {
+
+    // Parse response from string to JSON
+    let response = JSON.parse(http.responseText);
+
+    // log response.results for now to help traverse the obect
+    console.log(response);
+
+    // Iterate over response and list book titles
+    for (let i = 0; i < response.num_results; i++) {
+      let title = response.results[i].book_details[0].title;
+      let description = response.results[i].book_details[0].description;
+      console.log(title + '\n' + description + '\n' + '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    }
+  }
+}
