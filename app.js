@@ -42,6 +42,10 @@ function queryAPI(value) {
         let description = response.results[i].book_details[0].description;
         console.log(title + '\n' + description + '\n' + '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
       }
+
+      $("#ny-times-list-area").append("<h1>Well Hello There</h1>");
+
+
     }
   }
 
