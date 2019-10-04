@@ -41,12 +41,24 @@ function queryAPI(value) {
 
       // Iterate over response and list book titles
       for (let i = 0; i < response.num_results; i++) {
+        let bookISBN = "";
         let bookTitle = response.results[i].book_details[0].title;
         let bookAuthor = response.results[i].book_details[0].author;
         let bookDescription = response.results[i].book_details[0].description;
 
+        // checks if there is value other than "None" for isbn10, if not it used isbn13
+        if (response.results[i].isbns[0].isbn10 !== "None") {
+          bookISBN = response.results[i].isbns[0].isbn10;
+        } else {
+          bookISBN = response.results[i].isbns[0].isbn13;
+        }
+
+        let bookImageURL = "http://covers.openlibrary.org/b/isbn/" + bookISBN + "-M.jpg";
+
+        console.log(bookImageURL);
+
         let testDiv = `<div class="media mt-5 pb-3 border-bottom">
-                         <img src="https://via.placeholder.com/75x100" class="mr-3">
+                         <img src="` + bookImageURL + `" class="mr-3 book-cover ">
                          <div class="media-body">
                            <h5 class="mt-0">` + bookTitle + `</h5>
                            <p>by ` + bookAuthor + `</p>
