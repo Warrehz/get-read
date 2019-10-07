@@ -5,7 +5,7 @@ function queryAPI(value) {
   const http = new XMLHttpRequest();
 
   // NY Times API key
-  const key = 'api-key=TXSKC02xZokeRfJYlL4sfCVTDIGe0o8c';
+  const apiKey = 'api-key=TXSKC02xZokeRfJYlL4sfCVTDIGe0o8c';
 
   // base URL for accessing data
   const baseURL = 'https://api.nytimes.com/svc/books/v3/lists.json?';
@@ -21,9 +21,9 @@ function queryAPI(value) {
   }
 
   // query URL based that includes user input
-  let url = baseURL + key + '&list=' + userGenre;
+  let burl = baseURL + apiKey + '&list=' + userGenre;
 
-  http.open('GET', url);
+  http.open('GET', burl);
   http.send();
 
   http.onreadystatechange = function() {
